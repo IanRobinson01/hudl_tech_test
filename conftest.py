@@ -7,13 +7,25 @@ fixtures for tests
 
 import pytest
 from selenium.webdriver import Chrome
+from page_methods import LoginPageMethods, HomePageMethods
 
 
-@pytest.fixture(scope='module')
-def browser():
+@pytest.fixture()
+def driver(request):
     driver = Chrome('drivers/chromedriver.exe')
-    driver.get('https://www.bbc.co.uk/')
+    request.cls.driver = driver  # allows tests to access the driver via self.driver
+    driver.get('https://www.hudl.com/login')
     driver.maximize_window()
     driver.implicitly_wait(10)
-    yield driver  # the browser object created for the test
+    yield driver
     driver.quit()  # tear down browser after test
+
+
+@pytest.fixture()
+def login_page(driver):
+    yield LoginPageMethods(driver)
+
+
+@pytest.fixture()
+def home_page(driver):
+    yield HomePageMethods(driver)
