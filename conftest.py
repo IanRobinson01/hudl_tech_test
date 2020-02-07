@@ -13,10 +13,9 @@ from page_methods import LoginPageMethods, HomePageMethods
 @pytest.fixture()
 def driver(request):
     driver = Chrome('drivers/chromedriver.exe')
-    request.cls.driver = driver  # allows tests to access the driver via self.driver
+    request.cls.driver = driver  # allows tests to access the driver
     driver.get('https://www.hudl.com/login')
     driver.maximize_window()
-    driver.implicitly_wait(10)
     yield driver
     driver.quit()  # tear down browser after test
 

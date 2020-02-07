@@ -13,7 +13,7 @@ class LoginPageElements(object):
     email = (By.ID, 'email')
     password = (By.ID, 'password')
     login = (By.ID, 'logIn')
-    remember_me = (By.ID, 'remember-me')
+    remember_me = (By.CLASS_NAME, 'form__label--custom')
     login_error = (By.CLASS_NAME, 'login-error-container')
 
 
