@@ -59,7 +59,7 @@ class PageHelpers(BasePageObject):
 
     def check_element_visible(self, element):
         try:
-            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(element))  # presence_of_element_located
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(element))
             return True
         except TimeoutException:
             pytest.fail('test timed out whilst looking for element')
