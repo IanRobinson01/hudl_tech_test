@@ -6,6 +6,7 @@ defines methods which mimic user interaction
 """
 
 import pytest
+import utils
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -59,7 +60,7 @@ class PageHelpers(BasePageObject):
 
     def check_element_visible(self, element):
         try:
-            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(element))
+            WebDriverWait(self.driver, utils.cfg['wait_time']).until(EC.visibility_of_element_located(element))
             return True
         except TimeoutException:
             pytest.fail('test timed out whilst looking for element')
