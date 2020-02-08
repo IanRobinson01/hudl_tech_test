@@ -6,17 +6,16 @@ set of common fixtures that can be used across test classes
 """
 
 import pytest
-import utils
 from selenium.webdriver import Chrome, Firefox, Ie
 from page_methods import LoginPageMethods, HomePageMethods
-from utils import add_log_entry
+from utils import add_log_entry, cfg
 
 
 @pytest.fixture(scope='function')
 def driver(request, get_browser):
     driver = get_browser
     request.cls.driver = driver  # allows tests to access the driver
-    driver.get(f'{utils.cfg["hudl_url"]}{utils.cfg["hudl_login"]}')
+    driver.get(f'{cfg["hudl_url"]}{cfg["hudl_login"]}')
     driver.maximize_window()
     add_log_entry('web driver object initialised')
     yield driver
@@ -24,10 +23,10 @@ def driver(request, get_browser):
     add_log_entry('web driver object destroyed')
 
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
 def get_browser():
-    dvr_path = utils.cfg["driver_dir_path"]
-    brswr = utils.cfg['browser']
+    dvr_path = cfg["driver_dir_path"]
+    brswr = cfg['browser']
     add_log_entry(f'browser being used: {brswr}')
     if brswr == 'chrome':
         yield Chrome(f'{dvr_path}chromedriver.exe')

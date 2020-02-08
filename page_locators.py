@@ -8,7 +8,8 @@ identifies all elements that may be interacted with
 from selenium.webdriver.common.by import By
 
 
-class LoginPageElements(object):
+class LoginPageElements:
+    """ element locators for the login page """
 
     email = (By.ID, 'email')
     password = (By.ID, 'password')
@@ -17,6 +18,7 @@ class LoginPageElements(object):
     login_error = (By.CLASS_NAME, 'login-error-container')
 
 
-class HomePageElements(object):
+class HomePageElements:
+    """ element locators for the home page """
 
     home_text = (By.CLASS_NAME, 'hui-globalnav__home')

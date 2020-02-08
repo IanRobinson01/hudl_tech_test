@@ -6,16 +6,15 @@ defines methods which mimic user interaction
 """
 
 import pytest
-import utils
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from page_locators import LoginPageElements, HomePageElements
-from utils import add_log_entry
+from utils import add_log_entry, cfg
 
 
-class BasePageObject(object):
+class BasePageObject:
     """ class which all page method classes inherit from"""
     def __init__(self, driver):
         self.driver = driver
@@ -63,7 +62,8 @@ class PageHelpers(BasePageObject):
 
     def check_element_visible(self, element):
         try:
-            WebDriverWait(self.driver, utils.cfg['wait_time']).until(EC.visibility_of_element_located(element))
+            WebDriverWait(self.driver, cfg['wait_time'])\
+                .until(EC.visibility_of_element_located(element))
             return True
         except TimeoutException:
             add_log_entry(f'test timed out whilst looking for element: {element}')
