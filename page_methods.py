@@ -7,10 +7,11 @@ defines methods which mimic user interaction
 
 import pytest
 import utils
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from page_elements import LoginPageElements, HomePageElements
+from page_locators import LoginPageElements, HomePageElements
 
 
 class BasePageObject(object):
@@ -32,10 +33,15 @@ class LoginPageMethods(BasePageObject):
         pwd_field.clear()
         pwd_field.send_keys(pwd_text)
 
-    def click_login(self):
+    def login(self, entry_method):
         PageHelpers(self.driver).check_element_visible(LoginPageElements.login)
         login_btn = self.driver.find_element(*LoginPageElements.login)
-        login_btn.click()
+        if entry_method == 'button':
+            login_btn.click()
+        elif entry_method == 'return_key':
+            login_btn.send_keys(Keys.RETURN)
+        else:
+            pytest.fail('entry method not recognised')
 
     def click_remember_me(self):
         PageHelpers(self.driver).check_element_visible(LoginPageElements.remember_me)
