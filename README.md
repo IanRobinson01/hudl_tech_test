@@ -4,9 +4,11 @@ Written in Python 3 on a x64 Windows 10 machine.
 
 Key 3rd party libraries used: pytest, selenium
 
+Recommend setting up a virtualenv for the project and activating it
+
 Run the following to install dependencies:
 
-	pip install requirements.txt
+	pip3 install -r requirements.txt
 
 
 Execute tests by running runner.py
