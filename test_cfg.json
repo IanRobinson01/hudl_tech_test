@@ -1,9 +1,10 @@
 {
+  "driver_dir_path": "drivers/",
+  "output_path": "output/",
+  "log_name": "test_log.txt",
+  "report_name": "test_report.xml",
   "browser": "chrome",
   "wait_time": 10,
-  "report_dir_path": "reports/",
-  "report_name": "test_report.xml",
-  "driver_dir_path": "drivers/",
   "hudl_url": "https://www.hudl.com/",
   "hudl_login": "login",
   "hudl_home": "home"

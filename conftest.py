@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 
 """
-fixtures for tests
+set of common fixtures that can be used across test classes
 """
 
 import pytest
 import utils
 from selenium.webdriver import Chrome, Firefox, Ie
 from page_methods import LoginPageMethods, HomePageMethods
+from utils import add_log_entry
 
 
 @pytest.fixture(scope='function')
@@ -17,14 +18,17 @@ def driver(request, get_browser):
     request.cls.driver = driver  # allows tests to access the driver
     driver.get(f'{utils.cfg["hudl_url"]}{utils.cfg["hudl_login"]}')
     driver.maximize_window()
+    add_log_entry('web driver object initialised')
     yield driver
     driver.quit()  # tear down browser after test
+    add_log_entry('web driver object destroyed')
 
 
 @pytest.fixture()
 def get_browser():
     dvr_path = utils.cfg["driver_dir_path"]
     brswr = utils.cfg['browser']
+    add_log_entry(f'browser being used: {brswr}')
     if brswr == 'chrome':
         yield Chrome(f'{dvr_path}chromedriver.exe')
     elif brswr == 'firefox':
@@ -32,7 +36,8 @@ def get_browser():
     elif brswr == 'ie':
         yield Ie(f'{dvr_path}IEDriverServer.exe')
     else:
-        pytest.exit('browser not found')
+        add_log_entry(f'browser not found: {brswr}')
+        pytest.exit(f'browser not found: {brswr}')
 
 
 @pytest.fixture(scope='function')
