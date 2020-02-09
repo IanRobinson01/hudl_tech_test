@@ -7,8 +7,8 @@ set of common fixtures that can be used across test classes
 
 import pytest
 from selenium.webdriver import Chrome, Firefox, Ie
-from page_methods import LoginPageMethods, HomePageMethods
-from utils import add_log_entry, cfg
+from auto_core.page_methods import LoginPageMethods, HomePageMethods
+from auto_core.utils import add_log_entry, cfg
 
 
 @pytest.fixture(scope='function')

@@ -10,8 +10,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from page_locators import LoginPageElements, HomePageElements
-from utils import add_log_entry, cfg
+from auto_core.page_locators import LoginPageElements, HomePageElements
+from auto_core.utils import add_log_entry, cfg
 
 
 class BasePageObject:

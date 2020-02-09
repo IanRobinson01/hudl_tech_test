@@ -5,7 +5,7 @@
 the set of tests to be executed for the login page
 """
 import pytest
-from utils import add_log_entry, cfg
+from auto_core.utils import add_log_entry, cfg
 
 
 @pytest.mark.usefixtures('driver')

@@ -6,16 +6,16 @@ entry point for running tests
 """
 
 import pytest
-from utils import create_dir, load_config, add_log_entry
+from auto_core.utils import create_dir, load_config, add_log_entry
 
-CFG_FILE_NAME = 'test_cfg.json'
+CFG_FILE_NAME = 'auto_core/test_cfg.json'
 
 
 def execute_test_framework():
 
     # initialise configuration
     load_config(CFG_FILE_NAME)
-    from utils import cfg  # makes cfg available to all other modules
+    from auto_core.utils import cfg  # makes cfg available to all other modules
 
     # create report directory and report name
     output_dir = create_dir(cfg['output_path'])
