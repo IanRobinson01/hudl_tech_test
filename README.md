@@ -19,4 +19,6 @@ Tests can be run against Chrome, Firefox and IE.  Note that only the chromedrive
 
 
 NOTE:
-I implemented a test for the remember me feature, however i couldn't figure out the logic.  It seemed to exhibit the same behaviour whether it was checked or not.  I have marked the test so it gets skipped
+The test for the remember me function fails.
+I made an assumption that, if remember me is checked when the user logs in, if they close the browser, open a new browser and navigate to the login page, then it would display the home page.
+However this doesn't seem to be the case.  It seemed to exhibit the same behaviour whether it was checked or not.

@@ -37,18 +37,22 @@ class TestLoginPage:
             "We didn't recognize that email and/or password. Need help?"
         assert self.driver.current_url == f'{cfg["hudl_url"]}{cfg["hudl_login"]}'
 
-    @pytest.mark.skip('skipped')  # can't figure out the logic for the remember me function
+    #@pytest.mark.skip('skipped')
     def test_remember_me(self, login_page, home_page):
         add_log_entry(f'testing {TestLoginPage.test_remember_me.__name__}')
+        # login as normal and click remember me
         login_page.enter_email('ianrobinson01@hotmail.com')
         login_page.enter_password('7784ian')
         login_page.click_remember_me()
         login_page.login('button')
         home_page.get_home_text()
+        # delete all cookies that have an expiry parameter
+        # simulates closing the browser
         cookies = self.driver.get_cookies()
         for cookie in cookies:
             if 'expiry' in cookie:
                 self.driver.delete_cookie(cookie['name'])
+        # navigate to login page.  Should re-direct to home because remember me is checked
         self.driver.get(f'{cfg["hudl_url"]}{cfg["hudl_login"]}')
         assert home_page.get_home_text()
         assert self.driver.current_url == f'{cfg["hudl_url"]}{cfg["hudl_home"]}'
